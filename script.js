@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Function to add a new task
     function addTask(taskText = taskInput.value.trim(), save = true) {
-        //get and trim the task text
-        let taskText = taskInput.value.trim();
-
         //check if input is empty
         if (taskText === "") {
             alert("Please enter a task!");
@@ -27,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //create a remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
-        removeBtn.classList.add = ("remove-btn");
+        removeBtn.classList.add("remove-btn");
 
         //remove task when button is clicked
         removeBtn.onclick = function () {
@@ -48,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (save) {
             taskInput.value = "";
         }
-        
+
         //save task to local storage if required
         if (save) {
             tasks.push(taskText);
@@ -57,8 +54,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    //load tasks from localStorage on page load
-    tasks.forEach(taskText => addTask(taskText, false));
+    //loadTasks functions to load tasks from localStorage
+    function loadTasks() {
+        tasks.forEach(taskText => addTask(taskText, false));
+    }
+    
+
+    //load tasks on page load using loadTasks()
+    loadTasks();
 
     //add event listener to add task button
     addButton.addEventListener('click', function() {
